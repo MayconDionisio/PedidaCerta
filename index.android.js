@@ -9,40 +9,43 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
-  MapView
+  View
 } from 'react-native';
+import MapView from 'react-native-maps';
+
+const styles = StyleSheet.create({
+ container: {
+   ...StyleSheet.absoluteFillObject,
+   height: 400,
+   width: 400,
+   justifyContent: 'flex-end',
+   alignItems: 'center',
+ },
+ map: {
+   ...StyleSheet.absoluteFillObject,
+ },
+});
 
 export default class PedidaCerta extends Component {
   render() {
-    return (
-    <View>
-      <MapView
-        style={{height: 200, margin: 40, width:300}}
-        showsUserLocation={true}
-      />
-    </View>
-    );
+   const { region } = this.props;
+   console.log(region);
+
+   return (
+     <View style ={styles.container}>
+       <MapView
+         style={styles.map}
+         region={{
+           latitude: 37.78825,
+           longitude: -122.4324,
+           latitudeDelta: 0.015,
+           longitudeDelta: 0.0121,
+         }}
+       >
+       </MapView>
+     </View>
+   );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('PedidaCerta', () => PedidaCerta);
