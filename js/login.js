@@ -3,63 +3,53 @@ import {
   AppRegistry,
   StyleSheet,
   TextInput,
+  Text,
   View,
-  Button
+  Button,
+  KeyboardAvoidingView
 } from 'react-native';
-import MapView from 'react-native-maps';
-
-const styles = StyleSheet.create({
- container: {
-   ...StyleSheet.absoluteFillObject,
-   height: 400,
-   width: 400,
-   justifyContent: 'flex-end',
-   alignItems: 'center',
- },
- map: {
-   ...StyleSheet.absoluteFillObject,
- },
-});
+import LoginForm from './loginForm';
 
 export default class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      login: 'login',
-      pass: ''
-    };
   }
 
   render() {
-   const { region } = this.props;
-   console.log(region);
-
    return (
-    <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <View>
-      <TextInput
-          style={{height: 40, width:300}}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
-      />
-      <TextInput
-          style={{height: 40, width:300}}
-          onChangeText={(pass) => this.setState({pass})}
-          value={this.state.pass}
-          secureTextEntry={true}
-      />
+    <KeyboardAvoidingView behavior="padding" style={styles.loginWrapper}>
+      <View style={styles.logoContainer}>
+        <Text style={styles.logoText}>PedidaCerta</Text>
       </View>
-      <View>
-      <Button title="Login"
-        style={{height: 40, width:40}} />
+      <View style={styles.formContainer}>
+        <LoginForm />
       </View>
-    </View>
+    </KeyboardAvoidingView>
    );
   }
 }
+
+const styles = StyleSheet.create({
+    loginWrapper: {
+        flex: 1,
+        backgroundColor: '#e33f11'
+    },
+
+    logoContainer: {
+      alignItems: 'center',
+      flexGrow: 1,
+      justifyContent: 'center',
+    },
+
+    logoText: {
+      color: '#FFF',
+      fontSize: 22,
+      fontWeight: '400'
+    },
+
+    formContainer: {
+      flexGrow: 1,
+      justifyContent: 'flex-end',
+    }
+});
